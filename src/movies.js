@@ -1,17 +1,104 @@
 // The `movies` array from the file `src/data.js`.
-console.log('movies: ', movies);
+//console.log('movies: ', movies);
+const movies = require("./data.js")
 
 
+
+
+
+//Precisamos obter a matriz de todos os diretores. Como este é um aquecimento, 
+//daremos uma dica: você precisa mapear a matriz de filmes e reunir todos os 
+//diretores em uma matriz como resultado final. Vá em frente e crie uma função chamada 
+//getAllDirectors()que recebe um array de filmes como argumento e retorna um novo ( mapped array).
 // Iteration 1: All directors? - Get the array of all directors.
+
+
 // _Bonus_: It seems some of the directors had directed multiple movies so they will pop up multiple times in the array of directors.
 // How could you "clean" a bit this array and make it unified (without duplicates)?
-function getAllDirectors() {}
+function getAllDirectors(arr) {
+  const allDirec = arr.map((currentElement) => {
+        return currentElement.director;
+      })
+      return allDirec;
+}
+
+
+
+
+
+
+
+
+
+
+
 
 // Iteration 2: Steven Spielberg. The best? - How many drama movies did STEVEN SPIELBERG direct?
-function howManyMovies() {}
+function howManyMovies(moviesArr) {
+  const steveMovies = moviesArr.filter(movie => movie.director === "Steven Spielberg" && movie.genre.includes("Drama"));
+   return steveMovies.length;
+    }
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Iteration 3: All scores average - Get the average of all scores with 2 decimals
-function scoresAverage() {}
+function scoresAverage(arrScore) {
+
+ let mediaScore = 0;
+ let count = 0;
+if(arrScore.length === 0){
+return 0;
+}
+
+const ratedMovies = arrScore.filter((currentMovie) => {
+  return currentMovie.score > 0 || currentMovie.score !== undefined || currentMovie.score !== null;
+});
+
+const scoreMov = ratedMovies.map((currentElement) => {
+console.log("esse aqui é o score ->" + currentElement.score)
+
+  mediaScore = mediaScore + currentElement.score;
+  count++;
+
+})
+let mediaTotal = mediaScore / count
+let mediaTotalToFixed = mediaTotal.toFixed(2);
+mediaTotal = parseFloat(mediaTotalToFixed);
+
+
+console.log(typeof(mediaTotal))
+return mediaTotal
+
+
+
+}
+scoresAverage(movies)
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Iteration 4: Drama movies - Get the average of Drama Movies
 function dramaMoviesScore() {}
